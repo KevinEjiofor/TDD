@@ -1,2 +1,4 @@
-package tdd;public class SevenSegmentTest {
+package tdd;
+
+public class SevenSegmentTest {
 }

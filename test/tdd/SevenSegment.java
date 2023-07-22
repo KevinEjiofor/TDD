@@ -38,7 +38,7 @@ public class SevenSegment {
                      }
                      if (Switch.charAt(6)== '0'){
                          objects[2][1] = " ";
-                         objects[2][3] = " ";
+                         objects[2][2] = " ";
                      }
                      System.out.print(objects[counter][counter2] + " ");
 
@@ -53,7 +53,7 @@ public class SevenSegment {
      public static void main(String[] args) {
 //         Scanner input = new Scanner(System.in);
 //         System.out.println("enter ");
-         segment("11011011");
+         segment("11111101");
 
 
 
