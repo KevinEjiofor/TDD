@@ -703,6 +703,7 @@ public class MBTI {
                           friends in tow.
                                                   
                          """);
+                 break;
          }
     }
 
