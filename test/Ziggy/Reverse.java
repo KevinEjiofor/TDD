@@ -13,7 +13,7 @@ public class Reverse {
         for(int counter = numbers.length - 1; counter >= 0; counter--){
             int another = numbers[counter];
 
-            newList += another + " ";
+                    newList += another + " ";
         }
         return newList;
 

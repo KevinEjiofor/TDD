@@ -1,5 +1,6 @@
 package Assignments;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class CreditCardValidator {
@@ -7,61 +8,123 @@ public class CreditCardValidator {
     private static String cardType;
 
     public static void main(String[] args) {
-    Application();
+        Application();
     }
-public static  void Application(){
+
+    public static void Application() {
         Scanner input = new Scanner(System.in);
 
 
         System.out.print("\nHello, Kindly Enter card details to verify:   ");
         String cardNumber = input.next();
+
         if (cardNumber.matches("^[0-9]+$")) {
         } else {
             System.out.println("invalided entry");
             Application();
         }
+        if (cardNumber.length() >= 13  && cardNumber.length() <= 16) {
 
-        if (cardNumber.length() >= 13 && cardNumber.length() <= 16) {
-            if (cardNumber.startsWith("4")) {
-                cardType = "Visa Card";
-            } else if (cardNumber.startsWith("5")) {
-                cardType = "Master Card";
-            } else if (cardNumber.startsWith("37")) {
-                cardType = "American Express Cards";
+            int length = cardNumber.length();
+            int[] card_Number = new int[length];
 
-            } else if (cardNumber.startsWith("6")) {
-                cardType = "Discover Cards";
-
-            }
-
-            int card = 0;
-            for (int counter = 0; counter > cardNumber.length(); counter++) {
+            int card ;
+            for (int counter = 0; counter < cardNumber.length(); counter++) {
                 card = Integer.parseInt(String.valueOf(cardNumber.charAt(counter)));
 
+                if (counter == 0) {
+                    card_Number[0] = card;
+                }
+                if (counter == 1) {
+                    card_Number[1] = card;
+                }
+                if (counter == 2) {
+                    card_Number[2] = card;
+                }
+                if (counter == 3) {
+                    card_Number[3] = card;
+                }
+                if (counter == 4) {
+                    card_Number[4] = card;
+                }
+                if (counter == 5) {
+                    card_Number[5] = card;
+                }
+                if (counter == 6) {
+                    card_Number[6] = card;
+                }
+                if (counter == 7) {
+                    card_Number[7] = card;
+                }
+                if (counter == 8) {
+                    card_Number[8] = card;
+                }
+                if (counter == 9) {
+                    card_Number[9] = card;
+                }
+                if (counter == 10) {
+                    card_Number[10] = card;
+                }
+                if (counter == 11) {
+                    card_Number[11] = card;
+                }
+                if (counter == 12) {
+                    card_Number[12] = card;
+                }
+                if (counter == 13) {
+                    card_Number[13] = card;
+                }
+                if (counter == 14) {
+                    card_Number[14] = card;
+                }
+                if (counter == 15) {
+                    card_Number[15] = card;
+                }
 
+                if (card_Number[0] == 4) {
+                    cardType = "Visa Card";
+
+                } else if (card_Number[0] == 5) {
+                    cardType = "Master Card";
+                } else if (card_Number[0] == 3 && card_Number[1] == 7) {
+                    cardType = "American Express cards";
+                } else if (card_Number[0] == 0) {
+                    cardType = "Discover cards";
+
+                }
             }
-            String validate = CardValidate(card);
+            String validate = CardValidate(card_Number);
+            if (Objects.equals(validate, "valid")) {
 
-            System.out.print("*".repeat(50) +
-                    "\n**Credit card Type: " + cardType +
-                    "\n**Credit Card Number: " + cardNumber +
-                    "\n**Credit Card Digit length: " + cardNumber.length() +
-                    "\n**Credit Card Validity Status: " + validate + "\n" +
-                    "*".repeat(50));
-
-        } else {
-            System.out.println("Card number is not correct");
+                System.out.print("*".repeat(50) +
+                        "\n**Credit card Type: " + cardType +
+                        "\n**Credit Card Number: " + cardNumber +
+                        "\n**Credit Card Digit length: " + cardNumber.length() +
+                        "\n**Credit Card Validity Status: " + validate + "\n" +
+                        "*".repeat(50));
+            } else {
+                System.out.print("*".repeat(40) +
+                        "\n**Credit card Type:  null" +
+                        "\n**Credit Card Number: " + cardNumber +
+                        "\n**Credit Card Digit length: " + cardNumber.length() +
+                        "\n**Credit Card Validity Status: " + validate + "\n" +
+                        "*".repeat(40));
+            }
+        }else {
+            System.out.println("card number is  not correct ");
             Application();
         }
-
     }
+
+
+
 
     public static String CardValidate(int... card) {
 
 
         int even = 0;
         int odd = 0;
-        int total = 0;
+        int total ;
 
 
         for (int counter = card.length - 1; counter >= 0; counter--) {
@@ -90,29 +153,8 @@ public static  void Application(){
         }
         return cardValidation;
 
-
     }
 
-//    public static String cardType(int... card) {
-//
-//        //if (Objects.equals(cardValidation, "valid")) {
-//        for (int counter = 0; counter > card.length; counter++) {
-//            if (card[0] == 4) {
-//                cardType = "Visa Card";
-//            } else if (card[0] == 5) {
-//                cardType = "Master Card";
-//            } else if (card[0] == 37) {
-//                cardType = "American Express Card";
-//
-//            } else if (card[0] == 6) {
-//                cardType = "Discover Card";
-//            }
-//
-//
-//        }
-//
-//    }
-//     return cardType;
 
 
 }
