@@ -38,14 +38,15 @@ public class SemicolonStore {
     }
 
     public void CustomerNameEntry(){
-        System.out.print("Enter your name: ");
-        String user = input.next();
+        System.out.print("What is the customer's Name: ");
+        String user = input.nextLine();
         customerName  = user;
-        if (user.matches("\\D*")) {
+        if (user.matches("^\\D+$*")) {
             listOfItems();
+
         }
         else {
-            System.out.println("invalided entry");
+            System.out.println("\ninvalid entry");
             CustomerNameEntry();
         }
 
@@ -53,10 +54,9 @@ public class SemicolonStore {
 
     public void  listOfItems() {
         System.out.println("\nWhat did the user buy? ");
-        String items = input.next();
+        String items = input.nextLine();
         product.add(items);
-
-        if (items.matches("\\D*")){
+        if (items.matches("^\\D+$*")){
             unitOfItems();}
         else {
                 System.out.println("invalid entry");
@@ -65,8 +65,9 @@ public class SemicolonStore {
 
     public void unitOfItems(){
         System.out.println("\nHow many pieces?");
-        String numberOfItems = input.next();
-        if (numberOfItems.matches("^\\d*")) {
+        String numberOfItems = input.nextLine();
+
+        if (numberOfItems.matches("^\\d+$*")) {
             productNumber.add(Integer.valueOf(numberOfItems));
             unitPerItemsAmount();
         }
@@ -78,8 +79,8 @@ public class SemicolonStore {
 
     public void unitPerItemsAmount() {
         System.out.println("\nHow much per unit?");
-        String amount = input.next();
-        if (amount.matches("^\\d*")) {
+        String amount = input.nextLine();
+        if (amount.matches("^\\d+$*")) {
             productNumberAmount.add(Double.valueOf(amount));
             conditionForItems();
         }else {
@@ -92,17 +93,20 @@ public class SemicolonStore {
     public void conditionForItems(){
         System.out.println("\nAdd more items?"+
                 "\nif yes enter \"Yes\"  else enter \" No\"");
-        String mayBe = input.next();
+        String mayBe = input.nextLine();
 
          boolean isYes = mayBe.equalsIgnoreCase("yes");
          boolean isNo = mayBe.equalsIgnoreCase("no");
-
-         if (isYes){
+//        if (mayBe.matches("^\\D+$*")){
+//
+//        }
+        if (isYes){
              listOfItems();
          }
          else if (isNo){
              CashierNameEntry();
          }
+
          else {
              System.out.println("\nInvalid entry");
              conditionForItems();}
@@ -110,12 +114,13 @@ public class SemicolonStore {
     }
     public void CashierNameEntry() {
         System.out.println("\nWhat is  your Name: ");
-        String user = input.next();
-        cashierName = user;
+        String user = input.nextLine();
+
         if (user.matches("\\D*")) {discount();
+            cashierName = user;
         }
         else {
-            System.out.println("invalided entry");
+            System.out.println("invalid entry");
             CashierNameEntry();
         }
 
@@ -125,10 +130,10 @@ public class SemicolonStore {
 
     public void discount(){
         System.out.println("\nHow much discount will the customer get \n don't give more than 10% discount");
-        String discount = input.next();
+        String discount = input.nextLine();
         int num = Integer.parseInt(discount);
         discountInput = num;
-        if (discount.matches("^\\d*") && num <= 10) {
+        if (discount.matches("^\\d+$*") && num <= 10) {
             StoreInfo(); }
 
 
@@ -187,7 +192,7 @@ public class SemicolonStore {
     }
 
     public void amountFromCustomer(){
-        System.out.println("\nHow much did the customer give you? ");
+        System.out.println("\n\nHow much did the customer give you? ");
         String amountT = input.next();
         amountPaid = Double.valueOf(amountT);
         if (amountT.matches("^\\d*")){
@@ -201,8 +206,8 @@ public class SemicolonStore {
 
     }
     public void customerReceipt(){
-        System.out.print("\n"+storeName + "\n" + Branch + "\nLocation : " + Address + "\nTel : " + number + "\nDate : " + date
-                + "\nCashier : " + cashierName + "\nCustomer Name : " + customerName);
+        System.out.print("\n"+storeName + "\n" + Branch + "\nLocation : " + Address + "\nTel : " + number + "\nDate : "
+                + date + "\nCashier : " + cashierName + "\nCustomer Name : " + customerName);
         System.out.println("\n" + "=".repeat(60) +
                 "\n\t ITEM \t\t\tQTY \t  PRICE \t\tTOTAL(NGN)" + "\n" +
                 "-".repeat(60));
