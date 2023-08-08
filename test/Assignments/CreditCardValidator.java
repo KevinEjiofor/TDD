@@ -20,7 +20,7 @@ public class CreditCardValidator {
 
         if (cardNumber.matches("^[0-9]+$")) {
         } else {
-            System.out.println("invalided entry");
+            System.out.println("invalid entry");
             Application();
         }
         if (cardNumber.length() >= 13  && cardNumber.length() <= 16) {
@@ -88,7 +88,7 @@ public class CreditCardValidator {
                     cardType = "Master Card";
                 } else if (card_Number[0] == 3 && card_Number[1] == 7) {
                     cardType = "American Express cards";
-                } else if (card_Number[0] == 0) {
+                } else if (card_Number[0] == 6) {
                     cardType = "Discover cards";
 
                 }

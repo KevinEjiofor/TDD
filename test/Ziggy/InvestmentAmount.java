@@ -15,7 +15,6 @@ public class InvestmentAmount {
         int year = input.nextInt();
 
         double monthlyInterestRate = annualInterestRate / 1200;
-
         double futureInvestmentValue =  investment * Math.pow(1 + monthlyInterestRate, year*12);
 
         System.out.printf("Accumulated value is $ %.2f",futureInvestmentValue);

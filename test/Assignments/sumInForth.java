@@ -11,8 +11,8 @@ public class sumInForth {
 
         int[][] numbers = new int[4][3];
 
-        for (int counter = 0; counter < numbers.length; counter++) {
-            for (int counter2 = 0; counter2 < numbers[counter].length ; counter2++) {
+        for (int counter = 0; counter < numbers.length -1; counter++) {
+            for (int counter2 = 0; counter2 < numbers[counter].length  ; counter2++) {
                 System.out.print("Enter element: ");
                 int entry = input.nextInt();
                 numbers[counter][counter2] = entry;

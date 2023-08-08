@@ -3,23 +3,23 @@ package Assignments;
 import java.util.Scanner;
 
 public class MBTI {
-    private static String eiAnswers[] = new String[6];
+    private static final String[] eiAnswers = new String[6];
     private static int eiAAnswers;
     private static int eiBAnswers;
 
-    private static String snAnswers[] = new String[5];
+    private static final String[] snAnswers = new String[5];
 
     private static int snCounterA;
 
     private static int snCounterB;
 
-    private static String tfAnswers[] = new String[5];
+    private static final String[] tfAnswers = new String[5];
 
     private static int tfCounterA;
 
     private static int tfCounterB;
 
-    private static String jpAnswers[] = new String[5];
+    private static final String[] jpAnswers = new String[5];
 
     private static int jpCounterA;
 
