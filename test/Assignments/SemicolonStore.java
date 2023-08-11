@@ -97,15 +97,15 @@ public class SemicolonStore {
 
          boolean isYes = mayBe.equalsIgnoreCase("yes");
          boolean isNo = mayBe.equalsIgnoreCase("no");
-//        if (mayBe.matches("^\\D+$*")){
-//
-//        }
-        if (isYes){
-             listOfItems();
-         }
-         else if (isNo){
-             CashierNameEntry();
-         }
+        if (mayBe.matches("^\\D+$*")) {
+
+
+            if (isYes) {
+                listOfItems();
+            } else if (isNo) {
+                CashierNameEntry();
+            }
+        }
 
          else {
              System.out.println("\nInvalid entry");
@@ -116,7 +116,7 @@ public class SemicolonStore {
         System.out.println("\nWhat is  your Name: ");
         String user = input.nextLine();
 
-        if (user.matches("\\D*")) {discount();
+        if (user.matches("\\D+$*")) {discount();
             cashierName = user;
         }
         else {
