@@ -200,6 +200,7 @@ public class SemicolonStore {
 
         }
         else {
+            System.out.println();
             amountFromCustomer();
         }
 

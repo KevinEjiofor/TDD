@@ -10,10 +10,10 @@ public class PositionOfArrays {
         int[] check = {5, 18, 32, 3, 4,};
         int[] position = new int[check.length];
 
-        for(int index = 0; index < check.length; index ++  )
-            position[index] =check[index];
+        for (int index = 0; index < check.length; index++)
+            position[index] = check[index];
 
-            Arrays.sort(position);
+        Arrays.sort(position);
 
         System.out.println(Arrays.toString(position));
 

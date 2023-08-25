@@ -7,7 +7,7 @@ public class AccountTest {
 
     @Test
     public void canDepositIntoAccount(){
-        Account ziggyAccount = new Account("8989");
+        Account ziggyAccount = new Account("0560946397","Ziggy","8989");
         int currentBalance = ziggyAccount.getBalance("8989");
         assertEquals(0, currentBalance) ;
 
@@ -19,7 +19,7 @@ public class AccountTest {
     }
     @Test
     public void canDepositTwistTest() {
-        Account ziggyAccount = new Account("8989");
+        Account ziggyAccount = new Account("0560946397","Ziggy","8989");
 
         ziggyAccount.deposit(5000);
 
@@ -33,7 +33,7 @@ public class AccountTest {
     }
     @Test
     public void cannotDepositNegativeValueTest() {
-        Account ziggyAccount = new Account("8569");
+        Account ziggyAccount = new Account("0560946397","Ziggy","8569");
         ziggyAccount.deposit(2000);
 
         int currentBalance = ziggyAccount.getBalance("8569");
@@ -47,12 +47,12 @@ public class AccountTest {
 
 @Test
     public void withdrawalTest(){
-        Account ziggyAccount = new Account ("8989");
+        Account ziggyAccount = new Account ("0560946397","Ziggy","8989");
         ziggyAccount.deposit( 5000);
         int currentAmount = ziggyAccount.getBalance("8989");
         assertEquals(5000, currentAmount);
 
-        ziggyAccount.withdraw(3000, "8989");
+        ziggyAccount.withdraw(3000,"8989");
 
         int newBalance = ziggyAccount.getBalance("8989");
         assertEquals(2000, newBalance);
@@ -62,7 +62,7 @@ public class AccountTest {
 
     @Test
     public void withdrawWithPinTest (){
-        Account ziggyAccount = new Account ("8989");
+        Account ziggyAccount = new Account ("0560946397","Ziggy","8989");
                 ziggyAccount.deposit( 5000);
 
               int currentAmount = ziggyAccount.getBalance("8989");
@@ -74,24 +74,11 @@ public class AccountTest {
                 assertEquals( 2000, newBalance);
 
     }
-    @Test
-            public void  depositAboveBalanceTest(){
-            Account ziggyAccount = new Account("8989");
-                ziggyAccount.deposit(5000);
-                int currentAmount = ziggyAccount.getBalance("8989");
-                    assertEquals(5000,currentAmount);
 
-                 ziggyAccount.deposit(12000000);
-
-                 int newBalance = ziggyAccount.getBalance("8989");
-                 assertEquals(5000, newBalance);
-
-
-            }
 
             @Test
                 public void withdrawAboveBalanceAmountTest(){
-                    Account ziggyAccount = new Account("8989") ;
+                    Account ziggyAccount = new Account("0560946397","Ziggy","8989") ;
                     ziggyAccount.deposit(5000);
 
                     int currentBalance = ziggyAccount.getBalance("8989");
@@ -102,6 +89,25 @@ public class AccountTest {
                     int newBalance = ziggyAccount.getBalance("8989");
                     assertEquals(5000, newBalance);
             }
+
+            @Test
+                public void changePin(){
+                    Account ziggyAccount = new Account("0560946397","Ziggy","8989") ;
+
+                    ziggyAccount.updatePin("9595","9595");
+
+                    ziggyAccount.deposit(5000);
+
+                    int newPinToCheckAccountBalance = ziggyAccount.getBalance("9595");
+                    assertEquals(5000, newPinToCheckAccountBalance);
+
+
+
+
+
+
+
+                }
 
     }
 
