@@ -1,8 +1,7 @@
 package tdd;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AirConditionTest {
@@ -10,12 +9,12 @@ public class AirConditionTest {
     public void canAcBeOnTest() {
         AirCondition samsung = new AirCondition();
         boolean check = samsung.getIsOn();
-        assertEquals(false, check);
+        assertFalse(check);
 
         samsung.setIsOn(true);
 
         boolean newCheck = samsung.getIsOn();
-        assertEquals(true, newCheck);
+        assertTrue(newCheck);
 
     }
     @Test
@@ -36,7 +35,7 @@ public class AirConditionTest {
         samsung.setIsOn(true);
         boolean check = samsung.getIsOn();
 
-        assertEquals(true, check);
+        assertTrue(check);
         samsung.setTemperature(16);
 
         int checkTemperature = samsung.getTemperature();

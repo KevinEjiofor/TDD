@@ -1,8 +1,10 @@
 package Assignments;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 
 
 import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.*;
 
 public class TestRunTest {
     @Test
@@ -18,6 +20,7 @@ public class TestRunTest {
 
 
     }
+
     @Test
     public void testCheckingOddElement(){
         TestRun check = new TestRun();
