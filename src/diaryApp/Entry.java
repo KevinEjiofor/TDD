@@ -15,6 +15,10 @@ public class Entry {
         this.title = title;
         this.body = body;
     }
+    public void setId(int id){
+        this.id = id;
+    }
+
 
     public int getId(){
         return id;
@@ -22,17 +26,30 @@ public class Entry {
 
 
 
+    public  void setTitle(String title) {
+        this.title = title;
+    }
 
-    public  String getTitle(){
+    public String getTitle(){
         return title;
+
     }
 
 
 
+    public void setBody(String body) {
+        this.body = body;
+
+    }
 
     public String getBody(){
         return body;
     }
+
+    public String getDiaryDetails(){
+        return getTitle() + " " + getBody();
+    }
+
 
 
 }

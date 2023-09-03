@@ -1,7 +1,7 @@
 package diaryApp;
 
 import Ziggy.CustomerException;
-import diaryApp.Diary;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,34 +12,42 @@ public class DiaryTest {
     @BeforeEach
     public void startWith(){
         diary = new Diary("world war","good");
-        diary.lockDiary();
+        diary.createEntry("word","bad");
 
     }
 
     @Test
-        public void testingLock() {
-            boolean check = diary.getIsLock();
-            assertTrue(true, String.valueOf(check));
+    public void testingIfDiaryIsLock(){
+        boolean check = diary.getIsLock();
+        assertFalse(check);
 
-            diary.setIsLock(false);
+    }
+
+    @Test
+        public void testingUnlockWithPassword() throws CustomerException {
+            diary.lockDiary();
+            boolean check = diary.getIsLock();
+            assertTrue(check);
+
+
+
+            diary.unLock("good");
 
             boolean newCheck = diary.getIsLock();
-            assertFalse(false,String.valueOf(newCheck));
+            assertFalse(newCheck);
     }
 
 
     @Test
         public void testingToCreateAEntry() throws CustomerException {
-
-        diary.setIsLock(false);
         diary.createEntry("ziggy","word");
 
         assertEquals(new Entry(1,"ziggy","word").getId(), diary.findEntry(1).getId());
     }
     @Test
         public void  testingToGettingMoreEntry() throws CustomerException {
-        diary.setIsLock(false);
-        diary.createEntry("word","bad");
+
+
         diary.createEntry("ziggy","word");
 
         assertEquals(new Entry(1,"word","bad").getId(), diary.findEntry(1).getId());
@@ -50,12 +58,11 @@ public class DiaryTest {
 
     @Test
         public void testingForDeletingEntry() throws CustomerException {
-        diary.setIsLock(false);
-        diary.createEntry("word","bad");
+
         diary.createEntry("ziggy","word");
 
         assertEquals(new Entry(1,"word","bad").getId(), diary.findEntry(1).getId());
-        assertEquals(new Entry(2,"ziggy","word").getId(), diary.findEntry(2).getId());
+        assertEquals(new Entry(2,"ziggy","word").getId(),diary.findEntry(2).getId());
 
         diary.deleteEntry(1);
         int checkSize = diary.getSize();
@@ -63,7 +70,22 @@ public class DiaryTest {
     }
 
 
+    @Test
+    public void testToUpdateDiary() throws CustomerException {
 
+
+        diary.createEntry("ziggy","word");
+
+        assertEquals(new Entry(1,"word","bad").getId(), diary.findEntry(1).getId());
+        assertEquals(new Entry(2,"ziggy","word").getId(), diary.findEntry(2).getId());
+
+
+        diary.updateEntry(2,"war","run");
+
+        String check = diary.findEntry(2).getDiaryDetails();
+        assertEquals("war run", check);
+
+    }
 
 
 
