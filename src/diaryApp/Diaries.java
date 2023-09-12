@@ -5,7 +5,7 @@ import Ziggy.CustomerException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class diaries {
+public class Diaries {
     private final List<Diary> diaries = new ArrayList<>();
 
     public void addUpNewUser() {
@@ -26,5 +26,12 @@ public class diaries {
         Diary user = findUser(userName);
         diaries.remove(user);
 
+    }
+    public List<Diary> getAllUsers() {
+        return diaries;
+    }
+
+    public boolean userExists(String userName) {
+        return diaries.stream().anyMatch(diary -> diary.getUsername().equals(userName));
     }
 }

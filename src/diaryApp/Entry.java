@@ -7,17 +7,16 @@ public class Entry {
     int id;
     String title;
     String body;
-    private final LocalDateTime date = LocalDate.now().atStartOfDay();
+    private LocalDateTime date = LocalDate.now().atStartOfDay();
 
 
     public Entry(int id, String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.date = LocalDate.now().atStartOfDay();
     }
-    public void setId(int id){
-        this.id = id;
-    }
+
 
 
     public int getId(){
@@ -48,6 +47,11 @@ public class Entry {
 
     public String getDiaryDetails(){
         return getTitle() + " " + getBody();
+    }
+
+
+    public LocalDateTime getDate() {
+        return date;
     }
 
 

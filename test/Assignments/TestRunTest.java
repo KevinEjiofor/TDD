@@ -2,6 +2,7 @@ package Assignments;
 
 
 
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
@@ -39,7 +40,7 @@ public class TestRunTest {
 
         int[] newCheckElement  = check.reverseOfElement(element);
 
-        assertArrayEquals(newElement,newCheckElement);
+        assertArrayEquals(newElement, newCheckElement);
 
 
 

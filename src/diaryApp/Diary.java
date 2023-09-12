@@ -5,12 +5,15 @@ import Ziggy.CustomerException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Diary {
 
     private final String userName;
     private final String Password;
     private boolean isLocked;
+
+    private final AtomicInteger idGenerator = new AtomicInteger(1);
     private final List<Entry> entries = new ArrayList<>();
 
     public Diary(String userName, String password) {
@@ -18,22 +21,6 @@ public class Diary {
         this.Password = password;
     }
 
-
-    public void lockDiary() {
-        this.isLocked = true;
-    }
-
-
-
-    public boolean getIsLock() {
-        return isLocked;
-    }
-
-    public void unLock(String password) throws CustomerException {
-        validatePassword(password);
-        isLocked = false;
-
-    }
 
 
     public void createEntry(String title, String body) {
@@ -43,8 +30,7 @@ public class Diary {
 
 
 
-    private int generateId() {
-        return entries.size() + 1 ;
+    private int generateId() {  return idGenerator.getAndIncrement();
     }
 
 
@@ -54,7 +40,7 @@ public class Diary {
         for (Entry entry:entries) {
             if (entry.getId() == id)return entry;
         }
-        throw new CustomerException("ID NOT FOUND");
+        throw new CustomerException(id + "ID NOT FOUND");
 
     }
 
@@ -89,8 +75,26 @@ public class Diary {
             throw new CustomerException("PASSWORD INCORRECT");
         }
     }
+    public void lockDiary() {
+        this.isLocked = true;
+    }
+
+
+
+    public boolean getIsLock() {
+        return isLocked;
+    }
+
+    public void unLock(String password) throws CustomerException {
+        validatePassword(password);
+        isLocked = false;
+
+    }
+
+
 
     public String getUsername() {
         return userName;
     }
+
 }

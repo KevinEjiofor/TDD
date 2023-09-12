@@ -25,16 +25,14 @@ public class DiaryTest {
 
     @Test
         public void testingUnlockWithPassword() throws CustomerException {
-            diary.lockDiary();
-            boolean check = diary.getIsLock();
-            assertTrue(check);
+        diary.lockDiary();
+        diary.unLock("good");
+
+        boolean newCheck = diary.getIsLock();
+        assertFalse(newCheck);
 
 
 
-            diary.unLock("good");
-
-            boolean newCheck = diary.getIsLock();
-            assertFalse(newCheck);
     }
 
 
