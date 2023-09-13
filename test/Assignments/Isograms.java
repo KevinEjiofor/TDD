@@ -30,9 +30,9 @@ public class Isograms {
         word = word.toLowerCase();
         int length = word.length();
 
-        for (int i = 0; i < length - 1; i++) {
-            for (int j = i + 1; j < length; j++) {
-                if (word.charAt(i) == word.charAt(j)) {
+        for (int index = 0; index < length - 1; index++) {
+            for (int counter = index + 1; counter < length; counter++) {
+                if (word.charAt(index) == word.charAt(counter)) {
                     return false;
                 }
             }

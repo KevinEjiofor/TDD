@@ -8,14 +8,14 @@ import java.util.List;
 public class Diaries {
     private final List<Diary> diaries = new ArrayList<>();
 
-    public void addUpNewUser() {
-        Diary entry = new Diary("Igor", "Almighty");
+    public void addNewUser(String userName, String password) {
+        Diary entry = new Diary( userName, password);
         diaries.add(entry);
     }
 
     public Diary findUser(String userName) throws CustomerException {
         for (Diary diary : diaries) {
-            if (diary.getUsername().equals(userName)) {
+            if (diary.getUsername().equalsIgnoreCase(userName)) {
                 return diary;
             }
 
@@ -27,11 +27,14 @@ public class Diaries {
         diaries.remove(user);
 
     }
-    public List<Diary> getAllUsers() {
-        return diaries;
+    public int getAllUsers() {
+        return diaries.size();
     }
 
-    public boolean userExists(String userName) {
-        return diaries.stream().anyMatch(diary -> diary.getUsername().equals(userName));
+    public boolean userExist(String userName) throws CustomerException {
+        if (diaries.stream().anyMatch(diary -> diary.getUsername().equalsIgnoreCase(userName))){
+            return true;
+        }
+        throw new CustomerException("USER NOT FOUND");
     }
 }
