@@ -37,4 +37,13 @@ public class Diaries {
         }
         throw new CustomerException("USER NOT FOUND");
     }
+    public void login(String userName, String password) throws CustomerException {
+       findUser(userName).unLock(password);
+
+
+
+
+    }
+
+
 }

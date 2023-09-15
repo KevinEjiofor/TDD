@@ -47,5 +47,15 @@ public class DiariesTest {
 
         assertEquals(0,numberOfUser);
     }
+    @Test
+    public void testDiariesLogin() throws CustomerException {
+
+        diary.login("GodPower","home");
+        boolean check = diary.findUser("GodPower").getIsLock();
+        assertFalse(check);
+    }
+
+
+
 
 }

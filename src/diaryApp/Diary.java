@@ -77,7 +77,10 @@ public class Diary {
     }
     public void lockDiary() {
         this.isLocked = true;
+//
+//        return""+(int)(Math.random() * 10000);
     }
+
 
 
 
@@ -89,6 +92,7 @@ public class Diary {
         validatePassword(password);
         isLocked = false;
 
+
     }
 
 
@@ -96,5 +100,8 @@ public class Diary {
     public String getUsername() {
         return userName;
     }
+
+
+
 
 }

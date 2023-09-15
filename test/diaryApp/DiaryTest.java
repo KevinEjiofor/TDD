@@ -35,6 +35,11 @@ public class DiaryTest {
 
 
     }
+    @Test
+        public void testingTOUnlockWithWrongPassword() throws CustomerException {
+        assertThrows(CustomerException.class, () ->  diary.unLock("pppp"));
+
+    }
 
 
     @Test
@@ -44,7 +49,7 @@ public class DiaryTest {
         assertEquals(new Entry(1,"ziggy","word").getId(), diary.findEntry(1).getId());
     }
     @Test
-        public void  testingToGettingMoreEntry() throws CustomerException {
+        public void  testingToGetMoreEntry() throws CustomerException {
 
 
         diary.createEntry("ziggy","word");
@@ -60,8 +65,8 @@ public class DiaryTest {
         diary.unLock("good");
         diary.createEntry("ziggy","word");
 
-        assertEquals(new Entry(1,"word","bad").getId(), diary.findEntry(1).getId());
-        assertEquals(new Entry(2,"ziggy","word").getId(),diary.findEntry(2).getId());
+        assertEquals(new Entry(1,"word","bad"), diary.findEntry(1));
+        assertEquals(new Entry(2,"ziggy","word"),diary.findEntry(2));
 
         diary.deleteEntry(1);
         int checkSize = diary.getSize();
@@ -76,14 +81,18 @@ public class DiaryTest {
 
         diary.createEntry("ziggy","word");
 
-        assertEquals(new Entry(1,"word","bad").getId(), diary.findEntry(1).getId());
-        assertEquals(new Entry(2,"ziggy","word").getId(), diary.findEntry(2).getId());
+        assertEquals(new Entry(1,"word","bad"), diary.findEntry(1));
+        assertEquals(new Entry(2,"ziggy","word"), diary.findEntry(2));
 
 
         diary.updateEntry(2,"war","run");
 
         String check = diary.findEntry(2).getDiaryDetails();
         assertEquals("war run", check);
+
+    }
+    @Test
+    public void testToFindId(){
 
     }
 
