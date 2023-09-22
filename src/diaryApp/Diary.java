@@ -40,7 +40,7 @@ public class Diary {
         for (Entry entry:entries) {
             if (entry.getId() == id)return entry;
         }
-        throw new CustomerException(id + "ID NOT FOUND");
+        throw new CustomerException( "ID" + id + "NOT FOUND");
 
     }
 
