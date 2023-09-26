@@ -1,52 +1,83 @@
 package menstrualCycleTest;
-import menstrualCycleApp.MenstrualCycle;
-import Ziggy.CustomerException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
-import java.util.Calendar;
+import Ziggy.CustomerException;
+import menstrualCycleApp.MenstrualCycle;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MenstrualCycleTest {
-
-    private MenstrualCycle cycle;
-
+    MenstrualCycle cycle;
     @BeforeEach
-    public void setUp() {
-        cycle = new MenstrualCycle("joy", "bloodFlow");
-        cycle.startingMenstruation(new Date(2020, Calendar.FEBRUARY, 3));
-        cycle.endingMenstruation(new Date(2020, Calendar.FEBRUARY, 8));
+    public void startWith(){
+       cycle = new MenstrualCycle("User1", "Password1");
+
     }
 
     @Test
-    public void testToKnowCycleLengthIsNormal() throws CustomerException {
-        cycle.cycleLength(35);
-        boolean result = cycle.cycleLengthStatus();
-        assertTrue(result);
+    public void testCycleLengthStatus_ValidCycleLength() throws CustomerException {
+
+        cycle.setCycleLength(28);
+
+        String check = cycle.cycleLengthStatus();
+
+        assertEquals("Normal", check);
     }
 
     @Test
-    @DisplayName("Test abnormal cycle length")
-    public void testToKnowCycleLengthIsNotNormal() throws CustomerException {
-        cycle.cycleLength(19);
-        assertThrows(CustomerException.class, () -> cycle.cycleLengthStatus());
+    public void testCycleLengthStatus_InvalidCycleLength() {
+        cycle.setCycleLength(40);
+        assertThrows(CustomerException.class, cycle::cycleLengthStatus);
     }
+
+
+
+
+
     @Test
-    public void testToKnowOvulationPeriodDay() throws CustomerException, ParseException {
-        cycle.cycleLength(28);
-        Date[] dateOfOvulation = cycle.calculateOvulationPeriod();
+    public void testCalculateOvulationPeriod() {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date expectedStartDate = dateFormat.parse("2020-02-15");
-        Date expectedEndDate = dateFormat.parse("2020-02-20");
+            LocalDate startMenstruation = LocalDate.of(2023, 11, 2);
+            LocalDate endMenstruation = LocalDate.of(2023, 11, 7);
+            cycle.setStartMenstruation(startMenstruation);
+            cycle.setEndMenstruation(endMenstruation);
 
-        assertArrayEquals(new Date[]{expectedStartDate, expectedEndDate}, dateOfOvulation);
+            cycle.setCycleLength(28);
+
+            String ovulationPeriod = cycle.calculateOvulationPeriod();
+
+
+            String expectedOvulationPeriod = "Nov 14, 2023 Nov 18, 2023";
+
+            assertEquals(expectedOvulationPeriod, ovulationPeriod);
+        }
+        @Test
+        public void testForNextMenstruationDate(){
+            LocalDate startMenstruation = LocalDate.of(2023, 11, 2);
+            LocalDate endMenstruation = LocalDate.of(2023, 11, 7);
+            cycle.setStartMenstruation(startMenstruation);
+            cycle.setEndMenstruation(endMenstruation);
+
+            cycle.setCycleLength(28);
+
+            String calculateNextCycle = cycle.calculateNextCycle();
+
+            String expectedMenstruationDateToStart = "Dec 05, 2023";
+
+            assertEquals(expectedMenstruationDateToStart,calculateNextCycle);
+
+
+
+        }
+
+
+
+
 
 
     }
-}
+

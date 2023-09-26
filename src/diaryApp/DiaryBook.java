@@ -112,6 +112,7 @@ public class DiaryBook {
         try {
 
             String userName = inputMethod("Kindly enter your name:  ");
+            validateInputLetter(userName);
             String password = inputMethod("Enter a password: ");
 
             if (userName.isEmpty() || password.isEmpty())
@@ -122,7 +123,7 @@ public class DiaryBook {
             displayMethod("Diary created successfully!");
             displayWelcomePage();
 
-        } catch (InputMismatchException error) {
+        } catch (InputMismatchException | CustomerException error) {
             displayMethod(error.getMessage());
         }
     }
@@ -259,5 +260,11 @@ public class DiaryBook {
 
     private void displayMethod(String prompt){
         JOptionPane.showMessageDialog(null, prompt);
+    }
+
+    private void validateInputLetter(String letter) throws CustomerException {
+        String pattern = "^\\D+$*";
+
+        if (!letter.matches(pattern)) throw new CustomerException("Invalid number");
     }
 }

@@ -78,6 +78,15 @@ public class Account {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountName='" + accountName + '\'' +
+                ", balance=" + balance +
+                ", PIN='" + PIN + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {

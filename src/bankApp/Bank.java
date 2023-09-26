@@ -23,7 +23,7 @@ public class Bank {
 
     }
 
-    private String generateAccountNumber() {
+    public String generateAccountNumber() {
         return accounts.size() + 1 + "";
     }
 
@@ -78,5 +78,6 @@ public class Bank {
 
 
     }
+
 }
 

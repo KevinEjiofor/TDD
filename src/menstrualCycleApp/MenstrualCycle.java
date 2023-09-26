@@ -3,111 +3,88 @@ package menstrualCycleApp;
 import Ziggy.CustomerException;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 public class MenstrualCycle {
 
-    private Date startMenstruation;
+    private final String userName;
+    private final String inputPassword;
+    private LocalDate startMenstruation;
+    private LocalDate endMenstruation;
 
-    private Date endMenstruation;
+    private int cycleLength;
+    private String  CycleStatus;
 
-    private String userName;
-    private String password;
-
-    private    LocalDate ovulationDate;
-
-    private int cycleDays;
-
-   private boolean  isCycleStatus ;
-
-
-
-    public MenstrualCycle(String userName, String InputPassword) {
+    public MenstrualCycle(String userName, String inputPassword) {
         this.userName = userName;
-        this.password = InputPassword;
-
-
+        this.inputPassword = inputPassword;
     }
-    public void cycleLength(int days) {
 
-        this.cycleDays = days;
-        this.isCycleStatus = false;
-
+    public void setCycleLength(int days) {
+        this.cycleLength = days;
+        this.CycleStatus = " ";
     }
-    public  boolean cycleLengthStatus() throws CustomerException {
-        if (cycleDays >= 21 && cycleDays <= 35) {
-         isCycleStatus = true;
 
+    public String cycleLengthStatus() throws CustomerException {
+        if (cycleLength >= 21 && cycleLength <= 35) {
+            CycleStatus = "Normal";
 
         } else {
-            isCycleStatus = false;
-            throw new CustomerException("Try and see the doctor");
+
+            throw new CustomerException("Please consult a doctor .");
         }
+        return CycleStatus;
+    }
 
-    return isCycleStatus;
+    public void setStartMenstruation(LocalDate startMenstruation) {
+        this.startMenstruation = startMenstruation;
+    }
+
+    public LocalDate getStartMenstruation() {
+        return startMenstruation;
+    }
+
+    public LocalDate getEndMenstruation() {
+        return endMenstruation;
+    }
+
+    public void setEndMenstruation(LocalDate endMenstruation) {
+        this.endMenstruation = endMenstruation;
     }
 
 
+    public String calculateOvulationPeriod(){
 
+        LocalDate dateMenstruationStarted = getStartMenstruation();
 
-    public void startingMenstruation(Date startMenstruationInput) {
-        this.startMenstruation = startMenstruationInput;
-    }
+        int halfOfCycle = cycleLength / 2;
 
-    public void endingMenstruation(Date endMenstruationInput) {
-        this.endMenstruation = endMenstruationInput;
-    }
+        LocalDate ovulationDate = dateMenstruationStarted.plusDays(halfOfCycle);
 
-    public Date[] calculateOvulationPeriod() {
-        Date[] ovulationDates = new Date[2];
+        LocalDate startOvulationPeriod = ovulationDate.minusDays(2);
+        LocalDate endOvulationPeriod = ovulationDate.plusDays(2);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(startMenstruation);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+//        String formattedOvulationDate = ovulationDate.format(formatter);
+        String formattedStartDate = startOvulationPeriod.format(formatter);
+        String formattedEndDate = endOvulationPeriod.format(formatter);
 
-
-        Calendar ovulationDate1 = (Calendar) calendar.clone();
-        ovulationDate1.add(Calendar.DAY_OF_MONTH, cycleDays - 14);
-        ovulationDates[0] = ovulationDate1.getTime();
-
-        Calendar ovulationDate2 = (Calendar) calendar.clone();
-        ovulationDate2.add(Calendar.DAY_OF_MONTH, cycleDays - 9);
-        ovulationDates[1] = ovulationDate2.getTime();
-
-        return ovulationDates;
-    }
-
-
-//    public void calculationOvulationPeriod() throws CustomerException {
-//        if (startMenstruation != null && cycleDays > 0) {
-//            LocalDate startDate = startMenstruation.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//            LocalDate ovulationDay = startDate.plusDays(cycleDays - 14);
-//
-//        } else {
-//            throw new CustomerException("Start date of menstruation and cycle length must be set.");
-//        }
-
-//        public Date[] calculateOvulationPeriod() {
-//            Date[] ovulationDates = new Date[2];
-//
-//            Calendar calendar = Calendar.getInstance();
-//           calendar.setTime(endMenstruation);
-//
-//            calendar.add(Calendar.DAY_OF_MONTH, cycleDays - 14);
-//            ovulationDates[0] = calendar.getTime();
-//
-//            calendar.add(Calendar.DAY_OF_MONTH, 5);
-//            ovulationDates[1] = calendar.getTime();
-//
-//            return ovulationDates;
+        return formattedStartDate + " " + formattedEndDate;
 
     }
 
 
+    public String calculateNextCycle() {
+
+        LocalDate dateMenstruationStart = getEndMenstruation();
+
+        LocalDate menstruationStart = dateMenstruationStart.plusDays(cycleLength);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+        String formattedStartDate;
+        formattedStartDate = menstruationStart.format(formatter);
 
 
-
-
-
-
+        return formattedStartDate;
+    }
+}
