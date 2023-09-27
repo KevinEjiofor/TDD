@@ -254,6 +254,6 @@ public class Atm {
     private void validateInputLetter(String letter) throws CustomerException {
         String pattern = "^\\D+$*";
 
-        if (!letter.matches(pattern)) throw new CustomerException("Invalid number");
+        if (!letter.matches(pattern)) throw new CustomerException("Invalid entry");
     }
 }

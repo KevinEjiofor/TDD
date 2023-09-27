@@ -52,7 +52,7 @@ class NameTest {
         Name testName = new Name();
 
 
-        String number = "A12B-17Ckdt59";
+        String number = "A12B-12Ckdt59";
 
         int num = testName.convertToIntAndSum(number);
 

@@ -14,8 +14,8 @@ public class MenstrualCycleTest {
     MenstrualCycle cycle;
     @BeforeEach
     public void startWith(){
-       cycle = new MenstrualCycle("User1", "Password1");
-
+       cycle = new MenstrualCycle();
+        cycle.register("User", "Password1");
     }
 
     @Test
@@ -57,6 +57,8 @@ public class MenstrualCycleTest {
         }
         @Test
         public void testForNextMenstruationDate(){
+
+
             LocalDate startMenstruation = LocalDate.of(2023, 11, 2);
             LocalDate endMenstruation = LocalDate.of(2023, 11, 7);
             cycle.setStartMenstruation(startMenstruation);

@@ -46,7 +46,7 @@ public class DiaryBook {
 
                     }
                 } else {
-                    throw new IllegalArgumentException("Invalid input. Please enter '1 - 3' to create a diary account.");
+                    throw new IllegalArgumentException("Invalid input. Please enter '1 - 3'");
                 }
 
 
@@ -265,6 +265,6 @@ public class DiaryBook {
     private void validateInputLetter(String letter) throws CustomerException {
         String pattern = "^\\D+$*";
 
-        if (!letter.matches(pattern)) throw new CustomerException("Invalid number");
+        if (!letter.matches(pattern)) throw new CustomerException("Invalid entry");
     }
 }

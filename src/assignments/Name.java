@@ -3,42 +3,36 @@ package assignments;
 import java.util.Scanner;
 
 public class Name {
+    public String formatName(String fullName) {
+        String formattedName = "";
+
+        if (fullName.matches("^\\D+$*")) {
+
+            String[] parts = fullName.split(" ");
 
 
+            if (parts.length < 3) {
 
+                String firstName = parts[0];
+                String lastName = parts[parts.length - 1];
+                formattedName = firstName.charAt(0) + "." + " " + lastName;
 
-        public String formatName(String fullName) {
-            String formattedName = "";
+            } else {
+                String firstName = parts[0];
+                String middleNameOrInitial = parts[1];
+                String lastName = parts[parts.length - 1];
 
-            if (fullName.matches("^\\D+$*")) {
-
-                String[] parts = fullName.split(" ");
-
-
-                if (parts.length < 3) {
-
-                    String firstName = parts[0];
-                    String lastName = parts[parts.length - 1];
-                    formattedName = firstName.charAt(0) + "." + " " + lastName;
-
-                } else {
-                    String firstName = parts[0];
-                    String middleNameOrInitial = parts[1];
-                    String lastName = parts[parts.length - 1];
-
-                    formattedName = firstName.charAt(0) + "." + middleNameOrInitial.charAt(0) + ". " + lastName;
-                }
+                formattedName = firstName.charAt(0) + "." + middleNameOrInitial.charAt(0) + ". " + lastName;
             }
-
-            return formattedName;
         }
 
+        return formattedName;
+    }
+
     public int convertToInt(String number) {
-        int  numbers = Integer.parseInt(number.replaceAll("\\D", ""));
 
 
-
-        return numbers;
+        return Integer.parseInt(number.replaceAll("\\D", ""));
     }
 
     public int convertToIntAndSum(String number) {
@@ -47,18 +41,28 @@ public class Name {
 
             String digitChar = number.charAt(index) + "";
             if (digitChar.matches("[0-9]" )){
-                if (digitChar.matches("-[0-9]")) {
+
 
                 int digit = Integer.parseInt(digitChar);
 
                 sum += digit;
-            }
-            }
+            }else if (digitChar.equals("-")){
+                int digit = Integer.parseInt(digitChar);
 
+                sum -= digit;
+            }
         }
+
+
         return  sum;
+
     }
+
 }
+
+
+
+
 
 
 

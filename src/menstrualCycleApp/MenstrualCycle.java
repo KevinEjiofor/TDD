@@ -2,20 +2,24 @@ package menstrualCycleApp;
 
 import Ziggy.CustomerException;
 
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
 public class MenstrualCycle {
 
-    private final String userName;
-    private final String inputPassword;
+    private String userName;
+    private String inputPassword;
     private LocalDate startMenstruation;
     private LocalDate endMenstruation;
 
     private int cycleLength;
     private String  CycleStatus;
 
-    public MenstrualCycle(String userName, String inputPassword) {
+
+
+    public void  register(String userName, String inputPassword) {
         this.userName = userName;
         this.inputPassword = inputPassword;
     }
@@ -24,6 +28,8 @@ public class MenstrualCycle {
         this.cycleLength = days;
         this.CycleStatus = " ";
     }
+
+
 
     public String cycleLengthStatus() throws CustomerException {
         if (cycleLength >= 21 && cycleLength <= 35) {
