@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,11 +31,8 @@ public class MenstrualCycleTest {
     @Test
     public void testCycleLengthStatus_InvalidCycleLength() {
         cycle.setCycleLength(40);
-        assertThrows(CustomerException.class, cycle::cycleLengthStatus);
+        assertThrows(CustomerException.class, () -> cycle.cycleLengthStatus());
     }
-
-
-
 
 
     @Test
@@ -51,7 +48,7 @@ public class MenstrualCycleTest {
             String ovulationPeriod = cycle.calculateOvulationPeriod();
 
 
-            String expectedOvulationPeriod = "Nov 14, 2023 Nov 18, 2023";
+            String expectedOvulationPeriod = "Nov 14, 2023 - Nov 18, 2023";
 
             assertEquals(expectedOvulationPeriod, ovulationPeriod);
         }
@@ -75,11 +72,40 @@ public class MenstrualCycleTest {
 
 
         }
+    @Test
+    public void testPeriodLengthStatus() throws CustomerException {
+
+        LocalDate startMenstruation = LocalDate.of(2023, 11, 2);
+
+        LocalDate endMenstruation = LocalDate.of(2023, 11, 7);
+
+        String status = cycle.periodLengthStatus(startMenstruation, endMenstruation );
+
+        assertEquals("Normal", status);
+    }
+
+    @Test
+    public void testPeriodLength() throws CustomerException {
+
+        LocalDate startMenstruation = LocalDate.of(2023, 11, 2);
+
+        LocalDate endMenstruation = LocalDate.of(2023, 11, 12);
 
 
-
-
-
+        assertThrows(CustomerException.class,()->cycle.periodLengthStatus(startMenstruation, endMenstruation ));
 
     }
+    @Test
+    public void testPeriodLengthForZeroCondition() throws CustomerException {
+
+        LocalDate startMenstruation = LocalDate.of(2023, 11, 2);
+
+        LocalDate endMenstruation = LocalDate.of(2023, 11, 2);
+
+
+        assertThrows(CustomerException.class,()->cycle.periodLengthStatus(startMenstruation, endMenstruation ));
+
+    }
+
+}
 

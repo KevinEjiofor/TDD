@@ -5,12 +5,14 @@ import Ziggy.CustomerException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 
 public class MenstrualCycle {
 
     private String userName;
     private String inputPassword;
+
     private LocalDate startMenstruation;
     private LocalDate endMenstruation;
 
@@ -27,6 +29,12 @@ public class MenstrualCycle {
     public void setCycleLength(int days) {
         this.cycleLength = days;
         this.CycleStatus = " ";
+        if (cycleLength <= 0) {
+            throw new IllegalArgumentException("Invalid cycle length. Please set a positive value for cycleLength.");
+
+
+
+        }
     }
 
 
@@ -37,7 +45,7 @@ public class MenstrualCycle {
 
         } else {
 
-            throw new CustomerException("Please consult a doctor .");
+            throw new CustomerException("This is NOT NORMAL \n Please consult a doctor .");
         }
         return CycleStatus;
     }
@@ -75,7 +83,7 @@ public class MenstrualCycle {
         String formattedStartDate = startOvulationPeriod.format(formatter);
         String formattedEndDate = endOvulationPeriod.format(formatter);
 
-        return formattedStartDate + " " + formattedEndDate;
+        return formattedStartDate + " - " + formattedEndDate;
 
     }
 
@@ -93,4 +101,17 @@ public class MenstrualCycle {
 
         return formattedStartDate;
     }
+
+
+
+    public String periodLengthStatus(LocalDate startMenstruation, LocalDate endMenstruation) throws CustomerException {
+        long periodLength = ChronoUnit.DAYS.between(startMenstruation, endMenstruation);
+
+        if (periodLength <= 0 || periodLength > 7) {
+            throw new CustomerException("This is NOT NORMAL \n Please consult a doctor.");
+        } else {
+            return "Normal";
+        }
+    }
+
 }

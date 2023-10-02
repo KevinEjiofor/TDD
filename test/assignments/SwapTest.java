@@ -1,8 +1,9 @@
 package assignments;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 
 public class SwapTest {
     @Test
@@ -14,6 +15,25 @@ public class SwapTest {
         check.swapElementIndexTwoAndFour(element);
 
         int[] newElement = {5, 2, 9, 10, -6, 3};
-        assertArrayEquals(newElement, element);
+        Assertions.assertArrayEquals(newElement, element);
+    }
+    @Test
+    public void testElementToAssignStringToArray() {
+        Swapping check = new Swapping();
+        String word = "kissdry";
+
+        int [] index = {6, 2, 3, 4, 1, 0, 5};
+
+       String element = check.resetIndexOfWord(word,index);
+
+       String expected = "yssdikr";
+
+       Assertions.assertEquals(expected, element);
+
+
+
+
+
+
     }
 }
