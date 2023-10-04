@@ -1,5 +1,6 @@
 package assignments;
 
+import Ziggy.CustomerException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +9,7 @@ class NameTest {
 
     @Test
 
-    public void testNameInput() {
+    public void testNameInput() throws CustomerException {
         Name testName = new Name();
 
         String name = "Grace Chigozien Martins";
@@ -21,7 +22,7 @@ class NameTest {
     }
 
     @Test
-    public void testTwoNameInput() {
+    public void testTwoNameInput() throws CustomerException {
         Name testName = new Name();
 
         String name = "Grace Martins";
@@ -52,11 +53,11 @@ class NameTest {
         Name testName = new Name();
 
 
-        String number = "A12B-12Ckdt59";
+        String number = "A12B12Ckdt59";
 
         int num = testName.convertToIntAndSum(number);
 
-        int expected = 0;
+        int expected = 20;
 
         assertEquals(expected, num);
 

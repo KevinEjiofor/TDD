@@ -32,15 +32,19 @@ public class MenstrualApp {
                             
                                 
                             """);
-            if (login != null && !login.isEmpty()){
-                switch (login.charAt(0)) {
-                    case '1' -> createAnAccount();
+            if (login != null && !login.isEmpty()) {
+                switch (login) {
 
-                    case '2' -> exitApp();
+
+                    case "1" -> createAnAccount();
+
+                    case "2" -> exitApp();
+
+
+                    default -> throw new CustomerException("Invalid input. Please enter '1 - 2");
                 }
-            }else {
-                throw new CustomerException("Invalid input. Please enter '1 - 2");
             }
+
         } catch (CustomerException e) {
             displayMethod(e.getMessage());
             welcomePage();
@@ -84,17 +88,6 @@ public class MenstrualApp {
 
             String yearOfBirth = inputMethod("Kindly enter your year of birth : ");
             fourDigitNumber(yearOfBirth);
-            menuPage();
-
-        } catch (CustomerException e) {
-            displayMethod(e.getMessage());
-            welcomePage();
-        }
-    }
-
-    private void menuPage() throws CustomerException {
-
-        try {
             displayMethod(
                     "Hello "+ userName + """
                      \n   Welcome to our menstrual cycle tracking app! We're here to help you gain valuable insights into your menstrual cycle and ovulation patterns.s  
@@ -112,6 +105,18 @@ public class MenstrualApp {
                                         
                     Thank you for choosing our app, and we're here to support you on your journey of self-awareness and health management."
                     """);
+            menuPage();
+
+        } catch (CustomerException e) {
+            displayMethod(e.getMessage());
+            welcomePage();
+        }
+    }
+
+    private void menuPage() throws CustomerException {
+
+        try {
+
 
             String menu = inputMethod("""
 
@@ -128,16 +133,18 @@ public class MenstrualApp {
 
                     """);
             if (menu != null && !menu.isEmpty()) {
-                switch (menu.charAt(0)) {
-                    case '1' -> cyclesStatus();
+                switch (menu) {
+                    case "1" -> cyclesStatus();
 
-                    case '2' -> nextMenstrual();
+                    case "2" -> nextMenstrual();
 
-                    case '3' -> OvulationPeriod();
+                    case "3" -> OvulationPeriod();
 
-                    case '4' -> period();
+                    case "4" -> period();
                     
-                    case '5' -> backToHome();
+                    case "5" -> backToHome();
+
+                    default -> throw new CustomerException("Invalid input. Please enter '1 - 5'");
                 }
             } else {
                 throw new CustomerException("Invalid input. Please enter '1 - 5'");

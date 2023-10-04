@@ -3,8 +3,7 @@ package bankApp;
 import Ziggy.CustomerException;
 
 import javax.swing.*;
-
-
+import java.util.Objects;
 
 
 public class Atm {
@@ -34,15 +33,16 @@ public class Atm {
                                               
                            """);
 
-            switch (welcome_display.charAt(0)) {
-                case '1' -> bankRegistration();
-
-                case '2' -> bankTransaction();
-
-                case '3' -> exit();
-
-                default -> throw new CustomerException("Invalid input. Please enter '1 - 3' to create a diary account.");
+            switch (welcome_display) {
+                case "1" -> bankRegistration();
+                case "2" -> bankTransaction();
+                case "3" -> exit();
+                default ->
+                        throw new CustomerException("Invalid input. Please enter '1 - 3' to create a diary account.");
             }
+
+
+
         } catch (CustomerException error) {
             displayMethod(error.getMessage());
             welcome_page();
@@ -117,23 +117,20 @@ public class Atm {
                                     5-> Home Page  \s
                                     """) ;
 
-                switch (menu.charAt(0)){
-                    case '1' -> balance();
-                    
-                    case '2' -> deposit();
-                    
-                    case '3' -> withdraw();
-                    
-                    case '4' -> transfer();
-                    
-                    case '5' -> homePage();
 
-                    default -> throw new CustomerException("Invalid input. Please select a valid option (1-5).");
-                }
+            switch (menu) {
+                case "1" -> balance();
+                case "2" -> deposit();
+                case "3" -> withdraw();
+                case "4" -> transfer();
+                case "5" -> homePage();
+                default -> throw new CustomerException("Invalid input. Please select a valid option (1-5).");
+            }
 
 
         }catch(CustomerException error) {
             displayMethod(error.getMessage());
+            bankTransaction();
 
         }
     }

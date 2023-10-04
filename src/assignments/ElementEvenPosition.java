@@ -5,19 +5,19 @@ import java.util.Scanner;
 public class ElementEvenPosition {
     private final static Scanner input = new Scanner(System.in) ;
     public static String Even(int... numbers){
-        String newList = " ";
+        StringBuilder newList = new StringBuilder(" ");
 
         int counter = 0;
         for(; counter < numbers.length;counter++){
             if (counter % 2 == 0){
                 int another = numbers[counter];
 
-                newList += another + " ";
+                newList.append(another).append(" ");
 
             }
 
         }
-        return newList;
+        return newList.toString();
     }
 
     public static void main(String[] args) {

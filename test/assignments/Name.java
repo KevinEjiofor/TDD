@@ -1,9 +1,11 @@
 package assignments;
 
+import Ziggy.CustomerException;
+
 import java.util.Scanner;
 
 public class Name {
-    public String formatName(String fullName) {
+    public String formatName(String fullName) throws CustomerException {
         String formattedName = "";
 
         if (fullName.matches("^\\D+$*")) {
@@ -24,7 +26,8 @@ public class Name {
 
                 formattedName = firstName.charAt(0) + "." + middleNameOrInitial.charAt(0) + ". " + lastName;
             }
-        }
+        }else
+            throw new CustomerException("Invade entry");
 
         return formattedName;
     }

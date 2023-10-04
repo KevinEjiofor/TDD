@@ -3,8 +3,6 @@ package assignments;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
-
 public class SwapTest {
     @Test
     public void swappingElementIndexTwoAndFour() {
@@ -29,11 +27,34 @@ public class SwapTest {
        String expected = "yssdikr";
 
        Assertions.assertEquals(expected, element);
+    }
 
+    @Test
+    public void testToGetTheFrequencyNumber(){
 
+        Swapping check = new Swapping();
 
+        int [] index = {3, 2, 3};
 
+        int element = check.highestFrequencyNumber(index);
 
+        int frequency = 3;
+
+        Assertions.assertEquals(frequency,element);
+
+    }
+    @Test
+    public void testToGetTheHighestFrequencyNumber(){
+
+        Swapping check = new Swapping();
+
+        int [] index = {2, 2, 2, 1,1,1,2,2};
+
+        int element = check.highestFrequencyNumber(index);
+
+        int frequency = 2;
+
+        Assertions.assertEquals(frequency,element);
 
     }
 }

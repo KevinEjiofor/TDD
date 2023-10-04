@@ -4,7 +4,7 @@ import Ziggy.CustomerException;
 
 import javax.swing.*;
 import java.util.InputMismatchException;
-import java.util.Objects;
+
 
 
 
@@ -37,14 +37,12 @@ public class DiaryBook {
 
 
                 if (welcomePage != null && !welcomePage.isEmpty()) {
-                    switch (welcomePage.charAt(0)) {
-                        case '1' -> diaryUserRegister();
+                    if (welcomePage.equals("1")) diaryUserRegister();
 
-                        case '2' -> login();
+                    else if (welcomePage.equals("2")) login();
 
-                        case '3' -> exitMenu();
+                    else if (welcomePage.equals("3")) exitMenu();
 
-                    }
                 } else {
                     throw new IllegalArgumentException("Invalid input. Please enter '1 - 3'");
                 }
@@ -158,6 +156,7 @@ public class DiaryBook {
 
         } catch (CustomerException error) {
             displayMethod(error.getMessage());
+            mainMenu();
         }
 
 

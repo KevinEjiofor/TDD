@@ -1,7 +1,7 @@
 package assignments;
 
 
-
+import java.util.ArrayList;
 
 public class Swapping {
     public void swapElementIndexTwoAndFour(int... element) {
@@ -36,5 +36,30 @@ public class Swapping {
 
     }
 
+
+
+    public int highestFrequencyNumber(int[] elements) {
+        if (elements == null || elements.length == 0) {
+            throw new IllegalArgumentException("Input array is empty or null.");
+        }
+
+        int maxCount = 0;
+        int result = elements[0];
+
+        for (int element : elements) {
+            int count = 0;
+            for (int i : elements) {
+                if (element == i) count++;
+
+            }
+
+            if (count > maxCount) {
+                maxCount = count;
+                result = element;
+            }
+        }
+
+        return result;
+    }
 
 }
