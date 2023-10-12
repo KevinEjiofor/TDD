@@ -17,6 +17,7 @@ public class DiaryBook {
     public static void main(String[] args) {
         DiaryBook caller = new DiaryBook();
         caller.displayWelcomePage();
+        
 
     }
 
@@ -37,11 +38,11 @@ public class DiaryBook {
 
 
                 if (welcomePage != null && !welcomePage.isEmpty()) {
-                    if (welcomePage.equals("1")) diaryUserRegister();
-
-                    else if (welcomePage.equals("2")) login();
-
-                    else if (welcomePage.equals("3")) exitMenu();
+                    switch (welcomePage) {
+                        case "1" -> diaryUserRegister();
+                        case "2" -> login();
+                        case "3" -> exitMenu();
+                    }
 
                 } else {
                     throw new IllegalArgumentException("Invalid input. Please enter '1 - 3'");

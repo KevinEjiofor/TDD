@@ -1,9 +1,7 @@
 package hackerRank;
-import java.io.*;
+
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+
 
 public class DataType {
     public static String whoCanFitTheNumber(String numString)
