@@ -11,7 +11,7 @@ public class LoopWork {
                 int b = in.nextInt();
                 int n = in.nextInt();
 
-                int arr[] = new int[n];
+                int[] arr = new int[n];
                 arr[0]=a+(int)(Math.pow(2,0)*b);
                 for(int j=1;j<n;j++)
                 {
