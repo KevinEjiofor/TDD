@@ -26,7 +26,6 @@ class UndoStringBuilderTest {
         builder.delete(2, 8);
 
         String result = builder.toString();
-
         assertEquals("Weeeks", result);
 
 
@@ -36,7 +35,6 @@ class UndoStringBuilderTest {
         assertThrows(IllegalArgumentException.class,()->builder.delete(-2,14));
 
         String result = builder.toString();
-
         assertEquals("WelcomeGeeks", result);
 
 
@@ -48,7 +46,6 @@ class UndoStringBuilderTest {
         builder.insert(1, " ");
 
         String result = builder.toString();
-
         assertEquals("W elcomeGeeks", result);
 
     }
@@ -59,7 +56,6 @@ class UndoStringBuilderTest {
         assertThrows(IllegalArgumentException.class,()->builder.insert(-2,"e"));
 
         String result = builder.toString();
-
         assertEquals("WelcomeGeeks", result);
 
     }
@@ -72,18 +68,16 @@ class UndoStringBuilderTest {
         String result = builder.toString();
 
         String expected = "We are Geeks";
-
         assertEquals(expected, result);
 
     }
     @Test
     public void testReplaceMethodException() {
 
-       assertThrows(IllegalArgumentException.class,()-> builder.replace(12, 15, "e are "));
+        assertThrows(IllegalArgumentException.class, () -> builder.replace(12, 15, "e are "));
         String result = builder.toString();
 
         String expected = "WelcomeGeeks";
-
         assertEquals(expected, result);
     }
 
@@ -94,7 +88,6 @@ class UndoStringBuilderTest {
         String result = builder.toString();
 
         String expected = "skeeGemocleW";
-
         assertEquals(result, expected);
 
 
@@ -108,13 +101,12 @@ class UndoStringBuilderTest {
          builder.undo();
 
         String expected  = "WelcomeGeeks";
-
         assertEquals(expected,builder.toString());
 
     }
     @Test
     public void testUndoReplace() {
-//        UndoStringBuilder builder = new UndoStringBuilder("apple");
+
         builder.replace(1, 3, "ear");
         assertEquals("WearcomeGeeks", builder.toString());
 

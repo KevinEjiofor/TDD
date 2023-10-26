@@ -63,8 +63,8 @@ public class UndoStringBuilder {
 
     public StringBuilder undo() {
         if (!operationStack.isEmpty() && operationStack.size() > 1) {
-            operationStack.pop(); // Remove the current state
-            String previousState = operationStack.peek(); // Get the previous state
+            operationStack.pop();
+            String previousState = operationStack.peek();
             stringBuilder = new StringBuilder(previousState);
         }
         return stringBuilder;

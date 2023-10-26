@@ -28,7 +28,7 @@ private final Scanner input = new Scanner(System.in);
 
     }
     public void printingNumberInWords(){
-        System.out.println("kindly enter your number: ");
+        System.out.println("kindly enter a number: ");
         String user = input.next();
 
         if (user.matches("^\\d+$*")) {
@@ -86,14 +86,14 @@ private final Scanner input = new Scanner(System.in);
 
     }
     public boolean palindrome(String word) {
-        boolean isWord = false;
-        String newList = "";
-        for (int counter = 0; counter < word.length(); counter++) {
-            char character = word.charAt((word.length() - 1) - counter);
-            newList += character;
-            if (word.equalsIgnoreCase(newList))isWord = true;
+        boolean isPalindrome = false;
+        StringBuilder newList = new StringBuilder();
+        for (int counter = word.length() - 1; counter >= 0; counter--) {
+            char character = word.charAt(counter);
+            newList.append(character);
+            if (word.equalsIgnoreCase(newList.toString()))isPalindrome = true;
         }
-        return  isWord;
+        return isPalindrome;
     }
 
 
