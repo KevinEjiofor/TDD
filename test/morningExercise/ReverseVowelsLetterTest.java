@@ -5,6 +5,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReverseVowelsLetterTest {
+    @Test
+    public void testWords(){
+        VowelsReverse letter = new VowelsReverse();
+
+        String word = "Leetcode";
+        String expected = "Leotcede";
+
+        String expectedLetter =  letter.reverseVowels(word);
+        assertEquals(expected, expectedLetter);
+
+    }
 
     @Test
     public void testToReverseVowelsLetter(){
@@ -28,14 +39,8 @@ class ReverseVowelsLetterTest {
         String letter = "Leetcode";
         String expected = "Leotcede";
 
-        String expectedLetter = vowelsLetter.toReverseVowelsLetter(letter);
+        String expectedLetter =  vowelsLetter.toReverseVowelsLetter(letter);
 
         assertEquals(expected, expectedLetter);
-
-
-
-
-
-
     }
 }
