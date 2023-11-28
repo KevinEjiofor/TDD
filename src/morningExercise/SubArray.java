@@ -10,12 +10,32 @@ public class SubArray {
 
             if (currentSum > maxSum) {
                 maxSum = currentSum;
-                indices[0] = array[i];
-                indices[1] = array[i + 1];
+                indices[0] = i;
+                indices[1] = i + 1;
             }
+
         }
 
         return indices;
+    }
+
+    public int[] findElementsForLargestSum(int[] array) {
+        int[] elements = new int[2];
+        int maxSum = Integer.MIN_VALUE;
+
+        for (int i = 0; i < array.length-1; i++) {
+            int currentSum = array[i] + array[i+1];
+
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
+
+                elements[0] = array[i];
+                elements[1] = array[i+1];
+
+            }
+        }
+        return elements;
+
     }
 
 
@@ -40,6 +60,8 @@ public class SubArray {
 
         return isPatternFound;
     }
+
+
 }
 
 

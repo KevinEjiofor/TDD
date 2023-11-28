@@ -1,6 +1,19 @@
 package morningExercise;
 
+import java.util.Scanner;
+
+import static java.lang.System.in;
+
 public class RomanNumeral {
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(in);
+        System.out.println("enter: ");
+        int word = input.nextInt();
+        RomanNumeral roman = new RomanNumeral();
+        System.out.println(roman.getRomanNumeralValue(word));
+
+    }
     public String getRomanNumeralValue(int value) {
 
         StringBuilder romanNumeral = new StringBuilder();

@@ -9,12 +9,24 @@ class SubArrayTest {
 
     public void checkSubArray(){
         SubArray test = new SubArray();
-        int[] array = {2, 4, 6, 3, 9, 1};
+        int[] array = {2, 4, 6, 3, 1, 10};
 
         int [] result = test.findIndicesForLargestSum(array);
 
-        int [] expected = {3,9};
+        int [] expected = {4,5};
         assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void testToGetTheHighestElementWhenAddedTogether(){
+        SubArray test = new SubArray();
+        int[] array = {2, 4, 6, 3, 1, 10};
+
+        int [] result = test.findElementsForLargestSum(array);
+
+        int [] expected = {1,10};
+        assertArrayEquals(expected, result);
+
     }
 
     @Test
