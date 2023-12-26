@@ -56,8 +56,8 @@ public class MenstrualCycleTest {
         public void testForNextMenstruationDate(){
 
 
-            LocalDate startMenstruation = LocalDate.of(2023, 11, 2);
-            LocalDate endMenstruation = LocalDate.of(2023, 11, 7);
+            LocalDate startMenstruation = LocalDate.of(2023, 12, 1);
+            LocalDate endMenstruation = LocalDate.of(2023, 12, 7);
             cycle.setStartMenstruation(startMenstruation);
             cycle.setEndMenstruation(endMenstruation);
 
@@ -65,7 +65,7 @@ public class MenstrualCycleTest {
 
             String calculateNextCycle = cycle.calculateNextCycle();
 
-            String expectedMenstruationDateToStart = "Dec 05, 2023";
+            String expectedMenstruationDateToStart = "Jan 04, 2024";
 
             assertEquals(expectedMenstruationDateToStart,calculateNextCycle);
 

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class MenstrualApp {
-    private final MenstrualCycle cycles = new MenstrualCycle();
+    private  MenstrualCycle cycles = new MenstrualCycle();
     
     private String userName = " ";
 
@@ -59,15 +59,9 @@ public class MenstrualApp {
 
 
             switch (user) {
-                case "yes" ->
-                        displayMethod("Bye !");
-
-
+                case "yes" -> displayMethod("Bye !");
                 case "no" -> welcomePage();
-
                 default -> throw new IllegalArgumentException("Invalid input. Please enter 'YES / NO'. ");
-
-
             }
 
         }catch (IllegalArgumentException error){
@@ -76,8 +70,6 @@ public class MenstrualApp {
         }
 
     }
-
-
 
     private void createAnAccount() {
         try {
@@ -163,10 +155,10 @@ public class MenstrualApp {
 
     private void period() throws CustomerException {
         String startMenstruationStr = inputMethod("when did you start menstruation (\"yyyy-MM-dd\"): ");
-        validateNumbers(startMenstruationStr);
+        dateFormatValidation(startMenstruationStr);
 
         String endMenstruationStr = inputMethod("when did you stop your menstruation (\"yyyy-MM-dd\"): ");
-        validateNumbers(endMenstruationStr);
+        dateFormatValidation(endMenstruationStr);
 
         LocalDate startMenstruation = LocalDate.parse(startMenstruationStr);
         LocalDate endMenstruation = LocalDate.parse(endMenstruationStr);
@@ -182,10 +174,10 @@ public class MenstrualApp {
 
 
             String startMenstruationStr = inputMethod("when did you start menstruation (\"yyyy-MM-dd\"): ");
-            validateNumbers(startMenstruationStr);
+            dateFormatValidation(startMenstruationStr);
 
             String endMenstruationStr = inputMethod("when did you stop your menstruation (\"yyyy-MM-dd\"): ");
-            validateNumbers(endMenstruationStr);
+            dateFormatValidation(endMenstruationStr);
 
             LocalDate startMenstruation = LocalDate.parse(startMenstruationStr);
             LocalDate endMenstruation = LocalDate.parse(endMenstruationStr);
@@ -211,7 +203,7 @@ public class MenstrualApp {
 
 
             displayMethod("""
-                        Ovulation is the release of an egg from the ovaries. A woman is born with all her eggs.
+                    Ovulation is the release of an egg from the ovaries. A woman is born with all her eggs.
                     Once she starts her periods, 1 egg develops and is released during each menstrual cycle.
                     Pregnancy happens if a man's sperm meet and fertilise the egg. Sperm can survive in the fallopian\s
                     tubes for up to 7 days after sex.
@@ -235,40 +227,50 @@ public class MenstrualApp {
     private void nextMenstrual() throws CustomerException {
         try {
             displayMethod("""
-                    The menstrual cycle refers to several hormonal changes that occur as a female's body prepares for pregnancy. \s
+                    The menstrual cycle refers to several hormonal changes that occur as a female's body prepares for pregnancy or not. \s
                     A full menstrual cycle begins on the first day of a period and ends the day before the next period.
                     """);
 
 
             String startMenstruationLast = inputMethod("when did you start your last menstruation (\"yyyy-MM-dd\"): ");
-            validateNumbers(startMenstruationLast);
+            dateFormatValidation(startMenstruationLast);
 
             String endMenstruationLast = inputMethod("when did your last menstruation stop (\"yyyy-MM-dd\"): ");
-            validateNumbers(endMenstruationLast);
+            dateFormatValidation(endMenstruationLast);
+
+            displayMethod("""
+                    What is cycle length ?
+                    The menstrual cycle is counted from the first day of one period to the first day of the next.
+                    The cycle isn't the same for everyone. Menstrual bleeding might happen every 21 to 35 days and last 2 to 7 days.
+                    For the first few years after menstruation begins, long cycles are common.
+
+                    For instance, if you got your period on June 5 and your next period came on July 2,
+                    your cycle length was 27 days that month
+                    """);
+
+            int cycleLength = Integer.parseInt(inputMethod("Kindly enter your cycle length: "));
 
             LocalDate startMenstruation = LocalDate.parse(startMenstruationLast);
             LocalDate endMenstruation = LocalDate.parse(endMenstruationLast);
 
             cycles.setStartMenstruation(startMenstruation);
             cycles.setEndMenstruation(endMenstruation);
+            cycles.setCycleLength(cycleLength);
 
             String result = cycles.calculateNextCycle();
+
 
             displayMethod(
                     userName + " your next menstruation should be " + result );
             menuPage();
-            
 
-        }catch (DateTimeParseException e) {
+
+        }catch (DateTimeParseException | CustomerException | IllegalArgumentException e) {
+
             displayMethod("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            menuPage();
-
-        } catch (CustomerException | IllegalArgumentException e){
             displayMethod(e.getMessage());
             menuPage();
-
-        }
-
+}
 
 
 
@@ -300,7 +302,12 @@ public class MenstrualApp {
             menuPage();
         }
     }
+    private void dateFormatValidation(String dateFormat) throws CustomerException {
+        String dateRegex = "^\\d{4}-\\d{2}-\\d{2}$";
+        if(!dateFormat.matches(dateRegex)){throw new CustomerException("Invalid entry");}
 
+
+    }
 
     private void validateInputLetter(String letter) throws CustomerException {
         String pattern = "^\\D+$*";

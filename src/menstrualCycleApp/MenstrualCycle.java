@@ -45,7 +45,7 @@ public class MenstrualCycle {
 
         } else {
 
-            throw new CustomerException("This is NOT NORMAL \n Please consult a doctor .");
+            throw new CustomerException("This is NOT NORMAL \n Kindly consult a doctor .");
         }
         return CycleStatus;
     }
@@ -79,7 +79,6 @@ public class MenstrualCycle {
         LocalDate endOvulationPeriod = ovulationDate.plusDays(2);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
-//        String formattedOvulationDate = ovulationDate.format(formatter);
         String formattedStartDate = startOvulationPeriod.format(formatter);
         String formattedEndDate = endOvulationPeriod.format(formatter);
 
@@ -88,16 +87,18 @@ public class MenstrualCycle {
     }
 
 
-    public String calculateNextCycle() {
 
+
+
+
+    public String calculateNextCycle() {
+        String formattedStartDate;
         LocalDate dateMenstruationStart = getEndMenstruation();
 
-        LocalDate menstruationStart = dateMenstruationStart.plusDays(cycleLength);
+        LocalDate nextMenstruationStart = dateMenstruationStart.plusDays(cycleLength);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
-        String formattedStartDate;
-        formattedStartDate = menstruationStart.format(formatter);
-
+        formattedStartDate = nextMenstruationStart.format(formatter);
 
         return formattedStartDate;
     }
