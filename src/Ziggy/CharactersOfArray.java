@@ -28,9 +28,7 @@ public class CharactersOfArray {
             }
         }
         System.out.println(Arrays.toString(word));
-        for (int counter = 0; counter < word.length; counter++) {
-            word[counter] = "5";
-        }
+        Arrays.fill(word, "5");
         System.out.println(Arrays.toString(word));
     }
 }
